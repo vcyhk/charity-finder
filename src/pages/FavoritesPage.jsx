@@ -1,14 +1,56 @@
-export default function FavoritePage(){
+import { useEffect, useState } from "react";
 
-    return(
+export default function FavoritePage() {
+    const [favItems, setItems] = useState([{}]);
+
+    useEffect(() => {
+
+    })
+
+    return (
         <div className="container mx-auto">
             <h1 className="text-3xl pt-10 tracking-wide font-semibold text-gray-800">
                 Favorite
             </h1>
-            <div className="flex items-center justify-center mt-10 w-full">
-                <span className="text-xl font-semibold text-gray-400">No Favorites Yet</span>
+            <div className="flex items-center mt-10 w-full">
+                {favItems.length > 1
+                    ?
+                    <div className="grid grid-cols-3 gap-10 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3">
+                        {favItems.map((data, id) => (
+                            <div
+                                to={`/charity/${data.name}`}
+                                state={data}
+                                key={id}
+                                className="px-5 py-5 w-full rounded-md bg-white shadow-lg hover:bg-[#FBFBFB]"
+                            >
+                                <span className="flex items-center text-lg font-semibold">
+                                    {data.logoUrl
+                                        ? <img className="mr-3 rounded-full" src={data.logoUrl} />
+                                        : <img className="mr-3 w-12 h-12 rounded-full" src="./src/assets/donateLogo.svg" />
+                                    }
+                                    {data.name}
+                                </span>
+                                <div className="w-full my-3 border-b border-gray-300"></div>
+
+                                <span className="flex items-center">
+                                    <img className="mr-2 w-5 h-5" src="./src/assets/location.svg" />
+                                    {data.location
+                                        ? <div>{data.location}</div>
+                                        : <div>Unknown</div>
+                                    }
+
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+                    :
+                    <div className="w-full flex justify-center">
+                        <span className="text-xl font-semibold text-gray-400">No Favorites Yet</span>
+                    </div>
+                }
+
             </div>
-            
+
         </div>
     );
 }
