@@ -4,25 +4,52 @@ import { useLocation } from "react-router-dom";
 export default function CharityDetailPage() {
     const location = useLocation();
     const props = location.state;
+    const [display, setDisplay] = useState(true);
+    const [disMsg, setDisMsg] = useState(false);
+    const [check, setCheck] = useState(false);
 
-    const [display, setDisplay] = useState('hidden');
+    const data = localStorage.getItem("favoriteList");
+    const cacheData = data ? JSON.parse(data) : []
 
-    const [favItems, setfavItems] = useState({
+    useEffect(() => {
+        if(cacheData.length > 0)
+        for(var i =0; i<cacheData.length; i++){
+            if(cacheData[i].ein == props.ein){
+                setCheck(true)
+                setDisplay(false)
+            }
+        }
+    },[cacheData])
+
+    const [favItem, setfavItem] = useState({
+        ein: props.ein,
         coverImageUrl: props.coverImageUrl,
         logoUrl: props.logoUrl,
         name: props.name,
-        location: props.location,
+        location: props.location,   
         description: props.description,
         profileUrl: props.profileUrl,
         tags: props.tags
     });
 
-    //check this Fav exist
-    //add to local storage
-    async function addFav() {
-        localStorage.setItem(props.ein, JSON.stringify(favItems));
-        setDisplay('flex');
+    function addFav(){
+        setDisplay(false)
+        cacheData.push(favItem);
+        localStorage.setItem('favoriteList', JSON.stringify(cacheData))
+        setDisMsg(true);
+    }
 
+    function rmFav(){
+        if(cacheData.length>0){
+            const indexObject = cacheData.findIndex(object =>{
+                return object.ein = props.ein;
+            })
+            cacheData.splice(indexObject, 1);
+            localStorage.setItem('favoriteList', JSON.stringify(cacheData))
+            console.log(cacheData)
+        }
+        setDisMsg(false)
+        setDisplay(true)
     }
 
     return (
@@ -53,17 +80,32 @@ export default function CharityDetailPage() {
             </div>
             <div className="mt-10 p-6 h-fit rounded-md shadow-md">
                 <div>
-                    <div className={display + " mb-6 justify-center font-bold "}>
-                        This Charity Added To Your Favorite !
+                    {disMsg &&
+                    <div className={"flex mb-6 justify-center font-bold "}>
+                    This Charity Added To Your Favorite !
                     </div>
-                    <a>
-                        <button
-                            className="w-full bg-[#F14040] rounded-sm py-4 text-white font-bold hover:bg-[#ED2F2F]"
-                            onClick={addFav}
-                        >
-                            Add to favorites
-                        </button>
+                    }
+                    
+                    {display ?
+                     <a>
+                     <button
+                         className="w-full bg-[#F14040] rounded-sm py-4 text-white font-bold hover:bg-[#ED2F2F]"
+                         onClick={addFav}
+                     >
+                         Add to favorites
+                     </button>
                     </a>
+                    :
+                    <a>
+                     <button
+                         className="w-full bg-[#2D59AF] rounded-sm py-4 text-white font-bold hover:bg-[#1E499F]"
+                         onClick={rmFav}
+                     >
+                         Remove from favorites
+                     </button>
+                    </a>
+                    }
+                   
                 </div>
                 <div className="mt-4">
                     <a href={props.profileUrl} target="_blank">
@@ -74,7 +116,7 @@ export default function CharityDetailPage() {
                 </div>
                 <div className="mt-2 flex flex-wrap">
                     {props.tags
-                        ?
+                        &&
                         <div className="mt-6">
                             <span className="font-semibold text-lg">Tag:</span>
                             <div className="flex flex-wrap mt-1">
@@ -85,8 +127,6 @@ export default function CharityDetailPage() {
                                 ))}
                             </div>
                         </div>
-                        :
-                        <div></div>
                     }
 
                 </div>

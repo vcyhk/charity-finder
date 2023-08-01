@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom"
 
 export default function FavoritePage() {
-    const [favItems, setItems] = useState([{}]);
+    const [favItems, setFavItems] = useState([]);
+    const [show, setShow] = useState(false);
 
     useEffect(() => {
 
-    })
+        let data = JSON.parse(localStorage.getItem("favoriteList"));
+        let cacheData = data ? data : []
+        setFavItems(cacheData);
+    },[])
 
     return (
         <div className="container mx-auto">
@@ -13,11 +18,10 @@ export default function FavoritePage() {
                 Favorite
             </h1>
             <div className="flex items-center mt-10 w-full">
-                {favItems.length > 1
-                    ?
+                {favItems.length > 0?
                     <div className="grid grid-cols-3 gap-10 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3">
                         {favItems.map((data, id) => (
-                            <div
+                            <Link
                                 to={`/charity/${data.name}`}
                                 state={data}
                                 key={id}
@@ -40,7 +44,7 @@ export default function FavoritePage() {
                                     }
 
                                 </span>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                     :
@@ -48,9 +52,7 @@ export default function FavoritePage() {
                         <span className="text-xl font-semibold text-gray-400">No Favorites Yet</span>
                     </div>
                 }
-
             </div>
-
         </div>
     );
 }
