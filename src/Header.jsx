@@ -32,14 +32,14 @@ export default function Header(){
     return(
         <header>
             <nav className="py-6 bg-[#FCFCFC] font-ubuntu">
-                <div className="container mx-auto flex flex-wrap items-center justify-between">
-                    <a href="/">
-                        <div className="flex w-14 items-center">
+                <div className="container mx-auto items-center justify-between md:flex flex-wrap">
+                    <Link to="/">
+                        <div className="flex justify-center w-full items-center md:w-14">
                             <img className="w-10 h-10 mr-3" src="./src/assets/icon.svg"/>
                             <span className="self-center text-2xl font-bold whitespace-nowrap">Charity Finder</span>
                         </div>
-                    </a>
-                    <div className="drop-shadow-md">
+                    </Link>
+                    <div className="block drop-shadow-md mt-4 px-4 md:my-auto">
                         <div className="relative">
                             <button type="button" className="absolute inset-y-0 right-0 flex items-center pr-3.5">
                                 <img src="./src/assets/search.svg" className="w-5 h-5"/>
@@ -49,13 +49,16 @@ export default function Header(){
                                 onBlur = {() => setTimeout(handleBlur, 200)}
                                 onChange={handleChange}
                                 value={searchInput}
-                                className="px-4 py-3 border border-gray-300 w-[28rem] rounded-md hover:outline outline-1 outline-[#32C8BB] focus:outline outline-offset-0" 
+                                className="px-4 py-3 border border-gray-300 rounded-md w-full
+                                lg:w-[28rem]
+                                hover:outline outline-1 
+                                outline-[#32C8BB] focus:outline outline-offset-0" 
                                 placeholder="Find a charity"/>
-                        </div>
+                        
                         {display && 
-                        <div className="flex flex-wrap absolute w-full h-fit bg-white border mx-auto rounded-b-lg p-2">
+                        <div className="flex flex-wrap absolute w-full h-fit bg-white border mx-auto rounded-b-lg p-2 lg:w-[28rem]">
                                 {searchList
-                                    ?
+                                    &&
                                     <>
                                         {(searchList).map((data, id) => (
                                                 <Link 
@@ -67,19 +70,20 @@ export default function Header(){
                                                 </Link>
                                         ))}
                                     </>
-                                    :
-                                    <div className="w-full px-3 py-4">{searchInput}</div>
                                 }
                         </div>
                         }
-                    </div>
-                    <Link to="/favorites">
-                    <button type="button" className="flex space-x-2 items-center border-0 drop-shadow-md rounded-full p-3 bg-white hover:bg-slate-50 duration-300">
-                        <div>
-                            <img src="./src/assets/heart.svg" className="w-5 h-5"/>
                         </div>
-                    </button>
-                    </Link>
+                    </div>
+                    <div className="flex mt-6 justify-center md:my-auto">
+                        <Link to="/favorites">
+                        <button type="button" className="flex space-x-2 items-center border-0 drop-shadow-md rounded-full p-3 bg-white hover:bg-slate-50 duration-300">
+                            <div>
+                                <img src="./src/assets/heart.svg" className="w-5 h-5"/>
+                            </div>
+                        </button>
+                        </Link>
+                    </div>
                 </div>
             </nav>
         </header>
