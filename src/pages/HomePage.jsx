@@ -29,10 +29,10 @@ export default function HomePage(){
                 </h1>
                 {lists.length > 0
                 ?
-                <div className="px-20 mt-5 grid justify-items-center grid-cols-3 gap-10 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3">
+                <div className="px-20 mt-5 grid justify-items-center grid-cols-1 gap-10 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3">
                     {lists.map((data, id) => (
                         <Link 
-                            to={`/charity/${data.name}`}
+                            to={`/charity/${data.ein}`}
                             state={data}
                             key={id} 
                             className="mt-5 px-5 py-5 w-full rounded-md bg-white shadow-lg hover:bg-[#FBFBFB]"

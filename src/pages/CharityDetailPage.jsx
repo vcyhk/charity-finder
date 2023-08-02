@@ -47,7 +47,7 @@ export default function CharityDetailPage() {
         const indexObject = await cacheData.findIndex(object =>{
             return object.ein = props.ein;
         })
-        cacheData.splice(indexObject, 1);
+        await cacheData.splice(indexObject, 1);
         localStorage.setItem('favoriteList', JSON.stringify(cacheData))
     }
 
@@ -79,7 +79,7 @@ export default function CharityDetailPage() {
             </div>
             <div className="mt-10 p-6 h-fit rounded-md shadow-md">
                 <div>
-                    {add &&
+                    {!add &&
                     <div className={"flex mb-6 justify-center font-bold "}>
                     This Charity Added To Your Favorite !
                     </div>
