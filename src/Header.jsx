@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import causes from "./CausesList.json"
 
@@ -6,20 +7,15 @@ export default function Header(){
     const [display, setDisplay] = useState(false);
     const [searchInput, setSearchInput] = useState('');
     const [searchList, setSearchList] = useState();
-
-    useEffect(() => {
-
-    },[searchInput])
+    const location = useLocation();
 
     function handleChange(e){
         setDisplay(true)
         setSearchInput(e.target.value)
-
         const causesList = causes.causes;
         if (causesList != null) {
             const result = causesList.filter(item => item.includes(searchInput)).slice(0, 10)
             setSearchList(result)
-
         }
     }
 
@@ -46,6 +42,7 @@ export default function Header(){
                                 type="text"
                                 onBlur = {() => setTimeout(handleBlur, 200)}
                                 onChange={handleChange}
+                                value={searchInput}
                                 className="px-4 py-3 border border-gray-300 w-[28rem] rounded-md hover:outline outline-1 outline-[#32C8BB] focus:outline outline-offset-0" 
                                 placeholder="Find a charity"/>
                         </div>

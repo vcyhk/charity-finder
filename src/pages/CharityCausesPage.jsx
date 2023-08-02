@@ -15,17 +15,16 @@ export default function CharityCausesPage() {
             setLists(res.data.nonprofits);
         })
         .catch(err => console.log(err));
-    }, []);
+    }, [location]);
 
     return (
         <div className="container mx-auto">
         <h1 className="text-3xl pt-10 tracking-wide font-semibold text-gray-800">
             Search Result
         </h1>
-        <div className="flex items-center mt-10 w-full mb-14">
-            {lists.length > 0
-                ?
-                <div className="px-20 mt-5 grid justify-items-center grid-cols-3 gap-10 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3">
+        <div className="flex items-center my-10 w-full">
+            {lists.length > 0 ?
+                <div className="px-15 grid w-full justify-items-center grid-cols-3 gap-10 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3">
                     {lists.map((data, id) => (
                         <Link 
                             to={`/charity/${data.name}`}
@@ -33,7 +32,6 @@ export default function CharityCausesPage() {
                             key={id} 
                             className="mt-5 px-5 py-5 w-full rounded-md bg-white shadow-lg hover:bg-[#FBFBFB]"
                         >
-                            
                             <span className="flex items-center text-lg font-semibold">
                                 {data.logoUrl
                                 ?<img className="mr-3 rounded-full" src={data.logoUrl}/>
@@ -54,11 +52,11 @@ export default function CharityCausesPage() {
                         </Link> 
                     ))}
                 </div>
-                :
+            :
                 <div className="w-full my-16 flex flex-col items-center justify-center text-gray-400 font-bold">
                     <div className="text-xl">No Items Found</div>
                 </div>
-                }
+            }
         </div>
     </div>
     );

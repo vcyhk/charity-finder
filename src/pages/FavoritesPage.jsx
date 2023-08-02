@@ -4,19 +4,23 @@ import { Link } from "react-router-dom"
 export default function FavoritePage() {
     const [favItems, setFavItems] = useState([]);
     const [show, setShow] = useState(false);
+    const [check, setCheck] = useState(false);
 
     useEffect(() => {
         let data = JSON.parse(localStorage.getItem("favoriteList"));
         let cacheData = data ? data : []
-        setFavItems(cacheData);
-    },[])
+        if(!check){
+            setCheck(true);
+            setFavItems(cacheData);
+        }
+    },[favItems])
 
     return (
         <div className="container mx-auto">
             <h1 className="text-3xl pt-10 tracking-wide font-semibold text-gray-800">
                 Favorite
             </h1>
-            <div className="flex items-center mt-10 w-full">
+            <div className="flex items-center my-10 w-full">
                 {favItems.length > 0?
                     <div className="grid grid-cols-3 gap-10 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3">
                         {favItems.map((data, id) => (
@@ -45,10 +49,10 @@ export default function FavoritePage() {
                             </Link>
                         ))}
                     </div>
-                    :
-                    <div className="w-full flex justify-center">
-                        <span className="text-xl font-semibold text-gray-400">No Favorites Yet</span>
-                    </div>
+                :
+                <div className="w-full flex justify-center">
+                    <span className="text-xl font-semibold text-gray-400">No Favorites Yet</span>
+                </div>
                 }
             </div>
         </div>

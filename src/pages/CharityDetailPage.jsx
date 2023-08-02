@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom"
 
 export default function CharityDetailPage() {
     const location = useLocation();
     const props = location.state;
-    const [display, setDisplay] = useState(true);
-    const [disMsg, setDisMsg] = useState(false);
-    const [check, setCheck] = useState(false);
+    const [add, setAdd] = useState(true);
+    const [msg, setMsg] = useState(false);
 
     const data = localStorage.getItem("favoriteList");
     const cacheData = data ? JSON.parse(data) : []
 
     useEffect(() => {
-        if(cacheData.length > 0)
-        for(var i =0; i<cacheData.length; i++){
-            if(cacheData[i].ein == props.ein){
-                setCheck(true)
-                setDisplay(false)
+        console.log(cacheData)
+        if(cacheData.length > 0){
+            for(var i =0; i<cacheData.length; i++){
+                if(cacheData[i].ein == props.ein){
+                    setAdd(false);
+                    break;
+                }
             }
         }
     },[cacheData])
@@ -33,23 +35,20 @@ export default function CharityDetailPage() {
     });
 
     function addFav(){
-        setDisplay(false)
+        setAdd(false);
+        setMsg(true);
         cacheData.push(favItem);
         localStorage.setItem('favoriteList', JSON.stringify(cacheData))
-        setDisMsg(true);
     }
 
-    function rmFav(){
-        if(cacheData.length>0){
-            const indexObject = cacheData.findIndex(object =>{
-                return object.ein = props.ein;
-            })
-            cacheData.splice(indexObject, 1);
-            localStorage.setItem('favoriteList', JSON.stringify(cacheData))
-            console.log(cacheData)
-        }
-        setDisMsg(false)
-        setDisplay(true)
+    async function rmFav(){
+        setMsg(false)
+        setAdd(true)
+        const indexObject = await cacheData.findIndex(object =>{
+            return object.ein = props.ein;
+        })
+        cacheData.splice(indexObject, 1);
+        localStorage.setItem('favoriteList', JSON.stringify(cacheData))
     }
 
     return (
@@ -80,13 +79,12 @@ export default function CharityDetailPage() {
             </div>
             <div className="mt-10 p-6 h-fit rounded-md shadow-md">
                 <div>
-                    {disMsg &&
+                    {add &&
                     <div className={"flex mb-6 justify-center font-bold "}>
                     This Charity Added To Your Favorite !
                     </div>
                     }
-                    
-                    {display ?
+                    {add ?
                      <a>
                      <button
                          className="w-full bg-[#F14040] rounded-sm py-4 text-white font-bold hover:bg-[#D31616] duration-300"
@@ -121,9 +119,12 @@ export default function CharityDetailPage() {
                             <span className="font-semibold text-lg">Tag:</span>
                             <div className="flex flex-wrap mt-1">
                                 {(props.tags).map((data, id) => (
-                                    <div key={id} className="bg-slate-500 text-white px-3 py-2 m-2 rounded-md shadow-md">
+                                    <Link to={"/search/"+data}
+                                        state={data} 
+                                        key={id} 
+                                        className="bg-slate-500 text-white px-3 py-2 m-2 rounded-3xl shadow-md hover:bg-slate-600 duration-300">
                                         {data}
-                                    </div>
+                                    </Link>
                                 ))}
                             </div>
                         </div>
