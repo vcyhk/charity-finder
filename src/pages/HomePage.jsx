@@ -1,15 +1,15 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { CausesList } from "../CausesList";
+
 
 export default function HomePage(){
     const [lists, setLists] = useState({});
-    const causes = ['animals','art', 'culture', 'disease', 'education', 'environment', 'health', 'humans', 'justice', 'religion', 'research'];
-    
+    const randList = ['animals','art', 'culture', 'disease', 'education', 'environment', 'health', 'humans', 'justice', 'religion', 'research'];
+
     useEffect(() => {
-        var cause = causes[Math.floor(Math.random()*causes.length)];
-        axios.get('https://partners.every.org/v0.2/search/' + cause +'?take=9&apiKey=' + import.meta.env.VITE_API_KEY)
+        var randCauses = randList[Math.floor(Math.random()*randList.length)];
+        axios.get('https://partners.every.org/v0.2/search/' + randCauses +'?take=9&apiKey=' + import.meta.env.VITE_API_KEY)
         .then(res => {
             setLists(res.data.nonprofits);
         })

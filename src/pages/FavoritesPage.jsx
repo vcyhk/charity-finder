@@ -6,7 +6,6 @@ export default function FavoritePage() {
     const [show, setShow] = useState(false);
 
     useEffect(() => {
-
         let data = JSON.parse(localStorage.getItem("favoriteList"));
         let cacheData = data ? data : []
         setFavItems(cacheData);
@@ -25,8 +24,7 @@ export default function FavoritePage() {
                                 to={`/charity/${data.name}`}
                                 state={data}
                                 key={id}
-                                className="px-5 py-5 w-full rounded-md bg-white shadow-lg hover:bg-[#FBFBFB]"
-                            >
+                                className="px-5 py-5 w-full rounded-md bg-white shadow-lg hover:bg-[#FBFBFB]">
                                 <span className="flex items-center text-lg font-semibold">
                                     {data.logoUrl
                                         ? <img className="mr-3 rounded-full" src={data.logoUrl} />

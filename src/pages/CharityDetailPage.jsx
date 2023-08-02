@@ -89,7 +89,7 @@ export default function CharityDetailPage() {
                     {display ?
                      <a>
                      <button
-                         className="w-full bg-[#F14040] rounded-sm py-4 text-white font-bold hover:bg-[#ED2F2F]"
+                         className="w-full bg-[#F14040] rounded-sm py-4 text-white font-bold hover:bg-[#D31616] duration-300"
                          onClick={addFav}
                      >
                          Add to favorites
@@ -98,7 +98,7 @@ export default function CharityDetailPage() {
                     :
                     <a>
                      <button
-                         className="w-full bg-[#2D59AF] rounded-sm py-4 text-white font-bold hover:bg-[#1E499F]"
+                         className="w-full bg-[#2D59AF] rounded-sm py-4 text-white font-bold hover:bg-[#0F3D97] duration-300"
                          onClick={rmFav}
                      >
                          Remove from favorites
@@ -109,7 +109,7 @@ export default function CharityDetailPage() {
                 </div>
                 <div className="mt-4">
                     <a href={props.profileUrl} target="_blank">
-                        <button className="w-full bg-emerald-800 rounded-sm py-4 text-white font-bold hover:bg-emerald-900">
+                        <button className="w-full bg-emerald-800 rounded-sm py-4 text-white font-bold hover:bg-emerald-950 duration-300">
                             Check it in Every.org
                         </button>
                     </a>
