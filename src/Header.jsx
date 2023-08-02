@@ -9,6 +9,12 @@ export default function Header(){
     const [searchList, setSearchList] = useState();
     const location = useLocation();
 
+    useEffect(() => {
+        setSearchInput('')
+    }, [location]);
+
+
+
     function handleChange(e){
         setDisplay(true)
         setSearchInput(e.target.value)

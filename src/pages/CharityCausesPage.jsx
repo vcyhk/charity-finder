@@ -20,7 +20,7 @@ export default function CharityCausesPage() {
     return (
         <div className="container mx-auto">
         <h1 className="text-3xl pt-10 tracking-wide font-semibold text-gray-800">
-            Search Result
+            Search results for: {props}
         </h1>
         <div className="flex items-center my-10 w-full">
             {lists.length > 0 ?
