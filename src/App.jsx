@@ -1,5 +1,4 @@
 import { Route,Routes } from "react-router-dom";
-import './App.css'
 import Layout from './Layout';
 import HomePage from "./pages/HomePage";
 import FavoritesPage from "./pages/FavoritesPage";
@@ -15,7 +14,8 @@ function App() {
         <Route path="/favorites" element={<FavoritesPage/>}/>
         <Route path="/search/:causes" element={<CharityCausesPage/>}/>
         <Route path="/charity/:id" element={<CharityDetailPage/>}/>
-        <Route path="*" element={<NotFoundPage />}/>
+        <Route path="/404NotFound" element={<NotFoundPage/>}/>
+        <Route path="*" element={<NotFoundPage/>}/>
       </Route>     
     </Routes>
   )

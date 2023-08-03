@@ -17,19 +17,19 @@ export default function HomePage(){
     }, []);
 
     return(
-        <div className="mb-4">
+        <div className="pb-4">
             <div className="flex items-center justify-center w-full h-96 bg-gradient-to-r from-[#2AA57A]  to-[#248142]">
                 <span className="text-center font-prompt tracking-wider text-[#F7F7F7] font-bold text-2xl sm:text-5xl">
                     Changing The World Through Kindness
                 </span>
             </div>
-            <div className="mb-14">
+            <div className="mb-14 ">
                 <h1 className="pt-8 text-3xl mt-2 font-semibold flex justify-center text-gray-700">
                     You May Interest
                 </h1>
                 {lists.length > 0
                 ?
-                <div className="px-4 mt-5 grid justify-items-center grid-cols-1 gap-10 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3">
+                <div className="px-4 mt-5 grid justify-items-center grid-cols-1 gap-10 sm:grid-cols-1 md:grid-cols-3 md:px-20">
                     {lists.map((data, id) => (
                         <Link 
                             to={`/charity/${data.name}`}

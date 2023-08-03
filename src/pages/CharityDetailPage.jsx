@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom"
+import { useLocation, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; 
 
 export default function CharityDetailPage() {
+    let navigate = useNavigate();
     const location = useLocation();
     const props = location.state;
     const [addBtn, setAddBtn] = useState(true)
@@ -26,7 +27,7 @@ export default function CharityDetailPage() {
         }
     },[cacheData])
 
-    const [favItem, setfavItem] = useState({
+    const favItem = {
         ein: props.ein,
         coverImageUrl: props.coverImageUrl,
         logoUrl: props.logoUrl,
@@ -35,7 +36,7 @@ export default function CharityDetailPage() {
         description: props.description,
         profileUrl: props.profileUrl,
         tags: props.tags
-    });
+    };
 
     function addFav(){
         setMsg(true)
@@ -45,19 +46,15 @@ export default function CharityDetailPage() {
     }
 
      function rmFav(){
-        
-        const indexObject = cacheData.findIndex(item =>{item.ein === props.ein;})
-        // cacheData.splice(indexObject, 1);
-        console.log(cacheData)
-        console.log(props.ein)
-        console.log(indexObject)
-        // localStorage.setItem('favoriteList', JSON.stringify(cacheData))
-        // setAddBtn(true)
-        // setMsg(false)
+        const index = cacheData.findIndex(obj => obj.ein === props.ein);
+        cacheData.splice(index, 1);
+        localStorage.setItem('favoriteList', JSON.stringify(cacheData))
+        setAddBtn(true)
+        setMsg(false)
     }
 
     return (
-        <div className="container mb-8 px-4 grid grid-cols-1 gap-8 mx-auto sm:grid-cols-1 md:grid-cols-3 mt-10">
+        <div className="container justify-center mb-8 px-4 grid grid-cols-1 gap-8 mx-auto sm:grid-cols-1 md:grid-cols-3 mt-10">
             <div className="col-span-2 rounded-md shadow-md">
                 <div>
                     <img className="rounded-t-lg" src={props.coverImageUrl} />
@@ -82,7 +79,7 @@ export default function CharityDetailPage() {
                     </div>
                 </div>
             </div>
-            <div className="p-6 h-fit rounded-md shadow-md">
+            <div className="p-6 col-span-2 h-fit rounded-md shadow-md md:col-span-1">
                 <div>
                     {msg &&
                     <div className={"flex mb-6 justify-center font-bold "}>

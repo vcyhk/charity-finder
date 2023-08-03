@@ -19,12 +19,12 @@ export default function CharityCausesPage() {
 
     return (
         <div className="container mx-auto">
-        <h1 className="text-3xl pt-10 tracking-wide font-semibold text-gray-800">
+        <h1 className="text-3xl pt-10 pl-6 tracking-wide font-semibold text-gray-800">
             Search results for: {props}
         </h1>
         <div className="flex items-center my-10 w-full">
             {lists.length > 0 ?
-                <div className="px-15 grid w-full justify-items-center grid-cols-1 gap-10 px-6 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3">
+                <div className="grid w-full justify-items-center grid-cols-1 gap-10 px-6 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3">
                     {lists.map((data, id) => (
                         <Link 
                             to={`/charity/${data.name}`}
