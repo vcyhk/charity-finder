@@ -36,8 +36,7 @@ export default function HomePage(){
                             state={data}
                             key={id} 
                             className="mt-5 px-5 py-5 w-full rounded-md bg-white shadow-lg hover:bg-[#FBFBFB]"
-                        >
-                            
+                        >   
                             <span className="flex items-center text-lg font-semibold">
                                 {data.logoUrl
                                 ?<img className="mr-3 rounded-full" src={data.logoUrl}/>
