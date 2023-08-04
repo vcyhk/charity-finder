@@ -60,9 +60,9 @@ export default function CharityDetailPage() {
                     <img className="rounded-t-lg" src={props.coverImageUrl} />
                 </div>
                 <div className="p-8">
-                    <h1 className={"flex items-center text-3xl tracking-wide font-semibold text-gray-800"}>
+                    <h1 className={"flex flex-wrap justify-center items-center text-3xl tracking-wide font-semibold text-gray-800 md:justify-normal"}>
                         {props.logoUrl
-                            ? <img className="mr-3 rounded-full" src={props.logoUrl} />
+                            ? <img className="mr-3 mb-3 rounded-full md:mb-0" src={props.logoUrl} />
                             : <img className="mr-3 w-12 h-12 rounded-full" src="../src/assets/donateLogo.svg" />
                         }
                         {props.name}
@@ -75,7 +75,7 @@ export default function CharityDetailPage() {
                         }
                     </div>
                     <div className="w-full">
-                        <p className="text-xl">{props.description}</p>
+                        <p className="text-fit">{props.description}</p>
                     </div>
                 </div>
             </div>

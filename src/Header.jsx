@@ -32,14 +32,14 @@ export default function Header(){
     return(
         <header>
             <nav className="py-6 bg-[#515151] font-ubuntu">
-                <div className="container mx-auto items-center justify-between md:flex flex-wrap">
+                <div className="container mx-auto items-center justify-between md:flex md:flex-wrap">
                     <Link to="/">
                         <div className="flex justify-center w-full items-center md:w-14">
                             <img className="w-10 h-10 mr-3" src="./src/assets/icon.svg"/>
                             <span className="self-center text-2xl text-white font-bold whitespace-nowrap">Charity Finder</span>
                         </div>
                     </Link>
-                    <div className="block drop-shadow-md mt-4 px-4 md:my-auto">
+                    <div className="drop-shadow-md mt-4 px-4 md:my-auto">
                         <div className="relative">
                             <button type="button" className="absolute inset-y-0 right-0 flex items-center pr-3.5">
                                 <img src="./src/assets/search.svg" className="w-5 h-5"/>
@@ -77,7 +77,7 @@ export default function Header(){
                     </div>
                     <div className="flex mt-6 justify-center md:my-auto">
                         <Link to="/favorites">
-                        <button type="button" className="flex space-x-2 items-center border-0 drop-shadow-md rounded-full p-3 bg-white hover:bg-[#E2E2E2] duration-300">
+                        <button type="button" className="space-x-2 items-center border-0 rounded-full p-3 bg-white hover:bg-[#E2E2E2] duration-300">
                             <div>
                                 <img src="./src/assets/heart.svg" className="w-5 h-5"/>
                             </div>
