@@ -22,7 +22,7 @@ export default function FavoritePage() {
             </h1>
             <div className="flex items-center my-10">
                 {favItems.length > 0?
-                    <div className="w-full px-4 grid grid-cols-1 gap-10 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3">
+                    <div className="w-full px-4 grid grid-cols-1 gap-10 sm:grid-cols-1 lg:grid-cols-3">
                         {favItems.map((data, id) => (
                             <Link
                                 to={`/charity/${data.name}`}

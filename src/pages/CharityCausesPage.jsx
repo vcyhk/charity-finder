@@ -24,7 +24,7 @@ export default function CharityCausesPage() {
         </h1>
         <div className="flex items-center my-10 w-full">
             {lists.length > 0 ?
-                <div className="grid w-full justify-items-center grid-cols-1 gap-10 px-6 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3">
+                <div className="grid w-full justify-items-center grid-cols-1 gap-10 px-6 sm:grid-cols-1 lg:grid-cols-3">
                     {lists.map((data, id) => (
                         <Link 
                             to={`/charity/${data.name}`}

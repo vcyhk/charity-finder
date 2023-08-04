@@ -32,9 +32,9 @@ export default function Header(){
     return(
         <header>
             <nav className="py-6 bg-[#515151] font-ubuntu">
-                <div className="container mx-auto items-center justify-between md:flex md:flex-wrap">
+                <div className="container mx-auto items-center justify-around md:flex md:flex-wrap">
                     <Link to="/">
-                        <div className="flex justify-center w-full items-center md:w-14">
+                        <div className="flex justify-center w-full items-center lg:w-14">
                             <img className="w-10 h-10 mr-3" src="./src/assets/icon.svg"/>
                             <span className="self-center text-2xl text-white font-bold whitespace-nowrap">Charity Finder</span>
                         </div>
