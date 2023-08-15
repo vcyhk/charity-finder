@@ -18,7 +18,7 @@ export default function HomePage(){
 
     return(
         <div className="pb-4">
-            <div className="flex items-center justify-center w-full h-96 bg-gradient-to-r from-[#2AA57A]  to-[#248142]">
+            <div className="flex items-center justify-center w-full h-96 bg-cover bg-center bg-[url('./src/assets/background.jpg')]">
                 <span className="text-center font-prompt tracking-wider text-[#F7F7F7] font-bold text-2xl sm:text-5xl">
                     Changing The World Through Kindness
                 </span>
