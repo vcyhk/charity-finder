@@ -1,8 +1,21 @@
 # React + Vite
+![](/screenshots/screenshot_1.png)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Charity Finder can help you connect with a diverse range of charitable events.
 
-Currently, two official plugins are available:
+## Build Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Get API key in https://www.every.org/charity-api
+
+Place the Google API in dev.env.js
+``` bash
+VITE_API_KEY = 'API_KEY'
+```
+Run the script
+``` bash
+npm install
+npm run dev
+```
+
+## Demo
+Demo: 
